@@ -1,4 +1,5 @@
 import Simulator from "./components/Simulador"
+import SimuladorTransito from "./components/SimuladorUI"
 
 
 function App()
@@ -6,8 +7,7 @@ function App()
 
   return (
    <div>
-      <h1>Simulador de Trânsito Inteligente</h1>
-        <Simulator/>
+      <SimuladorTransito/>
     </div>
   )
 }

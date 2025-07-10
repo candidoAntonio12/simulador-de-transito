@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #f3f3f3;
+  min-height: 100vh;
+}
+
+.titulo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.simulador {
+  display: flex;
+  gap: 10px;
+}
+
+.area-simulacao {
+  width: 900px;
+  height: 700px;
+  background: #ccc;
+  border-radius: 8px;
+  position: relative;
+}
+
+.painel-controle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+.painel-controle button {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+}
+
+.painel-controle button:hover {
+  background-color: #e0e0e0;
+}
+
+.painel-controle .voltar {
+  margin-top: 20px;
+}

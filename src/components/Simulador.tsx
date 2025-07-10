@@ -44,7 +44,7 @@ const Simulador: React.FC = () => {
       };
 
       p.setup = () => {
-        p.createCanvas(1000, 1000);
+        p.createCanvas(900, 900);
         gerarCarro();
       };
 
@@ -188,7 +188,7 @@ const Simulador: React.FC = () => {
     };
   }, []);
 
-  return <div ref={sketchRef}></div>;
+  return <div  ref={sketchRef}></div>;
 };
 
 export default Simulador;
