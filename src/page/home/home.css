@@ -1,0 +1,39 @@
+*{
+   margin: 0 ;
+   padding: 0;
+}
+.tela-inicial
+{
+    width: 100vw;
+    height: 640px;
+}
+.tela-inicial img
+{
+    height: 100%;
+}
+
+.painel-controle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  position: absolute;
+  top:20%;
+  left: 80%;
+}
+
+.painel-controle button {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+}
+
+.painel-controle button:hover {
+  background-color: #e0e0e0;
+}
+
+.painel-controle .voltar {
+  margin-top: 20px;
+}

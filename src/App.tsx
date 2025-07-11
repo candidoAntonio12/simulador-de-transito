@@ -1,5 +1,4 @@
-import Simulator from "./components/Simulador"
-import SimuladorTransito from "./components/SimuladorUI"
+import Home from "./page/home/home"
 
 
 function App()
@@ -7,7 +6,7 @@ function App()
 
   return (
    <div>
-      <SimuladorTransito/>
+      <Home/>
     </div>
   )
 }

@@ -11,16 +11,17 @@ const Simulador: React.FC = () => {
     const modelo = criarModelo();
     setModelo(modelo);
     treinarModelo(modelo);
+    
 
     const sketch = (p: p5) => {
       type Carro = { x: number; y: number; vel: number; cor: string; dir: 'H' | 'V'; faixa: number; ativo: boolean };
-      let carros: Carro[] = [];
+      const carros: Carro[] = [];
       let semaforoEstado = 'H';
       let tempoRestante = 5;
       let tempoAtual = 0;
-      const fps = 60;
-      const duracaoVerde = 4;
-      const duracaoAmarelo = 1;
+      const fps = 170;
+      const duracaoVerde = 5;
+      const duracaoAmarelo = 0.5
       let fase = 'verde';
 
       const gerarCarro = () => {
@@ -44,7 +45,7 @@ const Simulador: React.FC = () => {
       };
 
       p.setup = () => {
-        p.createCanvas(900, 900);
+        p.createCanvas(1000, 650);
         gerarCarro();
       };
 
@@ -59,25 +60,22 @@ const Simulador: React.FC = () => {
       };
 
       const prioridadeCruzamento = (carro: Carro, outros: Carro[]) => {
-        const cruzamentoX = carro.x >= 400 && carro.x <= 700;
-        const cruzamentoY = carro.y >= 200 && carro.y <= 580;
-
         if (carro.dir === 'H') {
           return !outros.some(c => c !== carro && c.ativo && c.dir === 'V' &&
-            c.x >= 400 && c.x <= 700 && c.y >= 200 && c.y <= 580);
+            c.x >= 200 && c.x <= 400 && c.y >= 480 && c.y <= 680);
         } else {
           return !outros.some(c => c !== carro && c.ativo && c.dir === 'H' &&
-            c.x >= 400 && c.x <= 700 && c.y >= 200 && c.y <= 580);
+            c.x >= 480 && c.x <= 680 && c.y >= 200 && c.y <=  400);
         }
       };
 
       const carroPodeAndar = (carro: Carro, outros: Carro[]) => {
-        const margem = 45;
-        const cruzamentoInicioX = 400;
-        const cruzamentoFimX = 700;
-        const cruzamentoInicioY = 200;
-        const cruzamentoFimY = 580;
-
+        const margem = 20;
+        const cruzamentoInicioX = 0;
+        const cruzamentoFimX = 480;
+        const cruzamentoInicioY = 0;
+        const cruzamentoFimY = 680;
+        
         const frente = outros.find(
           c => c !== carro && c.ativo && c.dir === carro.dir && c.faixa === carro.faixa &&
           ((carro.dir === 'H' && c.y === carro.y && c.x > carro.x && c.x - carro.x < margem) ||
@@ -163,12 +161,12 @@ const Simulador: React.FC = () => {
         else corV = fase === 'verde' ? 'green' : 'yellow';
 
         p.fill(corH);
-        p.ellipse(475, 375, 20, 20);
-        p.ellipse(475, 575, 20, 20);
+        //p.ellipse(475, 375, 20, 20);
+        //p.ellipse(475, 575, 20, 20);
         p.ellipse(375, 225, 20, 20);
-        p.ellipse(575, 225, 20, 20);
-        p.ellipse(375, 500, 20, 20);
-        p.ellipse(575, 500, 20, 20);
+        //p.ellipse(575, 225, 20, 20);
+        //p.ellipse(375, 500, 20, 20);
+        //p.ellipse(575, 500, 20, 20);
 
         p.fill(corV);
         p.ellipse(425, 500, 20, 20);
