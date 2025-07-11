@@ -3,6 +3,7 @@ import "./SimuladorTransito.css";
 import Simulador from "./Simulador";
 
 export default function SimuladorTransito() {
+  
   const [simulacaoIniciada, setSimulacaoIniciada] = useState(false);
 
   const iniciarSimulacao = () => setSimulacaoIniciada(true);
@@ -21,7 +22,6 @@ export default function SimuladorTransito() {
       <h1 className="titulo">Simulador De Trânsito Inteligente</h1>
 
       <div className="simulador">
-        {/* Área da simulação */}
         <div className="area-simulacao">
             <Simulador/>
         </div>

@@ -1,12 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import p5 from 'p5';
 import * as tf from '@tensorflow/tfjs';
 import { criarModelo, treinarModelo } from '../logic/ia';
+import { carroContext} from './../page/simulacao/context/CarroContext';
 
 const Simulador: React.FC = () => {
   const sketchRef = useRef<HTMLDivElement>(null);
   const [modelo, setModelo] = useState<tf.LayersModel | null>(null);
-
+  const carrosv = useContext(carroContext);
   useEffect(() => {
     const modelo = criarModelo();
     setModelo(modelo);
@@ -19,25 +20,17 @@ const Simulador: React.FC = () => {
       let semaforoEstado = 'H';
       let tempoRestante = 5;
       let tempoAtual = 0;
-      const fps = 170;
+      const fps = 190;
       const duracaoVerde = 5;
       const duracaoAmarelo = 0.5
       let fase = 'verde';
 
       const gerarCarro = () => {
-        const tipos: Carro[] = [
-          { x: -80, y: 240, vel: 2, cor: 'blue', dir: 'H', faixa: 0, ativo: true },
-          { x: -140, y: 240, vel: 2, cor: 'lightblue', dir: 'H', faixa: 0, ativo: true },
-          { x: -80, y: 520, vel: 2, cor: 'red', dir: 'H', faixa: 1, ativo: true },
-          { x: -140, y: 520, vel: 2, cor: 'pink', dir: 'H', faixa: 1, ativo: true },
-          { x: 440, y: -80, vel: 2, cor: 'green', dir: 'V', faixa: 0, ativo: true },
-          { x: 440, y: -140, vel: 2, cor: 'lime', dir: 'V', faixa: 0, ativo: true },
-          { x: 640, y: -80, vel: 2, cor: 'orange', dir: 'V', faixa: 1, ativo: true },
-          { x: 640, y: -140, vel: 2, cor: 'yellow', dir: 'V', faixa: 1, ativo: true },
-          { x: 640, y: -200, vel: 2, cor: 'gold', dir: 'V', faixa: 1, ativo: true }
-        ];
+        const tipos: Carro[] = carrosv;
+        
 
         for (const tipo of tipos) {
+          console.log("direcao "+ tipo.dir + "faixa " + tipo.faixa);
           if (!carros.some(c => c.x === tipo.x && c.y === tipo.y)) {
             carros.push({ ...tipo });
           }
@@ -62,19 +55,19 @@ const Simulador: React.FC = () => {
       const prioridadeCruzamento = (carro: Carro, outros: Carro[]) => {
         if (carro.dir === 'H') {
           return !outros.some(c => c !== carro && c.ativo && c.dir === 'V' &&
-            c.x >= 200 && c.x <= 400 && c.y >= 480 && c.y <= 680);
+           c.x >= 400 && c.x <= 700 && c.y >= 200 && c.y <= 580);
         } else {
           return !outros.some(c => c !== carro && c.ativo && c.dir === 'H' &&
-            c.x >= 480 && c.x <= 680 && c.y >= 200 && c.y <=  400);
+           c.x >= 400 && c.x <= 700 && c.y >= 200 && c.y <= 580);
         }
       };
 
       const carroPodeAndar = (carro: Carro, outros: Carro[]) => {
-        const margem = 20;
-        const cruzamentoInicioX = 0;
-        const cruzamentoFimX = 480;
-        const cruzamentoInicioY = 0;
-        const cruzamentoFimY = 680;
+       const margem = 100;
+        const cruzamentoInicioX = 400;
+        const cruzamentoFimX = 700;
+        const cruzamentoInicioY = 200;
+        const cruzamentoFimY = 580;
         
         const frente = outros.find(
           c => c !== carro && c.ativo && c.dir === carro.dir && c.faixa === carro.faixa &&
@@ -151,7 +144,7 @@ const Simulador: React.FC = () => {
 
           if (carro.x > 1100 || carro.y > 1100) {
             carro.ativo = false;
-            setTimeout(() => gerarCarro(), 1000);
+            setTimeout(() => gerarCarro(), 10000);
           }
         }
 
@@ -190,3 +183,4 @@ const Simulador: React.FC = () => {
 };
 
 export default Simulador;
+
