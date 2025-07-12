@@ -2,8 +2,8 @@ import { Outlet } from "react-router-dom";
 import "./configurar.css"
 import "./RegisterForm.css";
 import { routes } from "../../../main";
-import { addCarros } from "../context/CarroContext";
-import { useState } from "react";
+import { addCarros, carroContext } from "../context/CarroContext";
+import { useContext, useState } from "react";
 
 export default function Configurar()
 {
@@ -30,7 +30,7 @@ export  function RegisterForm() {
   const [faixa, setFaixa] = useState(0);
   const [direcao, setDirecao] = useState("");
   const [cor, setCor] = useState("");
-  
+  const carros = useContext(carroContext);
 const handleFaixa = (c : string) =>
 {
     setFaixa(parseInt(c));
@@ -41,8 +41,9 @@ const handleDirecao = (d : string) =>
 }
 
   return (
+    
     <div className="form-container">
-      <form className="register-form">
+       <form className="register-form">
         <div className="form-header">
           <div className="city-lineart" />
         </div>
@@ -71,7 +72,11 @@ const handleDirecao = (d : string) =>
         </div>
         <input type="color" onChange={(ev) => setCor(ev.target.value)} title="Pick your favorite color" />
         <button onClick={() =>addCarros(direcao, faixa, cor)} type="button">Submit</button>
+        <div className="estado">
+          carros : {carros.length}
+        </div>
       </form>
+      
     </div>
   );
 }

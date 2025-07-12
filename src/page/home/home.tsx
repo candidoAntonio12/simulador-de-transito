@@ -15,7 +15,7 @@ export default function Home()
                 <button onClick={onConfigurar} >Configurar Simulação</button>
                 <button >Historico de Simulação</button>
                 <button >Sobre</button>
-                <button >Voltar</button>
+                <button onClick={onVoltar} >Voltar</button>
           </div>
         </div> 
     </>
@@ -28,4 +28,8 @@ const onSimulacao = ()=>
 const onConfigurar = ()=>
 {
     routes.navigate("configurar-simulacao");
+}
+const onVoltar = ()=>
+{
+    routes.navigate(1);
 }

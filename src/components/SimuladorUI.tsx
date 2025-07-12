@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./SimuladorTransito.css";
 import Simulador from "./Simulador";
+import { useNavigate } from "react-router-dom";
 
 export default function SimuladorTransito() {
   
   const [simulacaoIniciada, setSimulacaoIniciada] = useState(false);
-
+  const navigator = useNavigate();
   const iniciarSimulacao = () => setSimulacaoIniciada(true);
   const pausarSimulacao = () => setSimulacaoIniciada(false);
   const reiniciarSimulacao = () => {
@@ -16,6 +17,10 @@ export default function SimuladorTransito() {
   const voltar = () => {
     // Lógica para voltar ao menu principal ou outra tela
   };
+  const onVoltar = ()=>
+  {
+    navigator("../",{replace: true});  
+  }
 
   return (
     <div className="container">
@@ -32,7 +37,7 @@ export default function SimuladorTransito() {
           <button onClick={pausarSimulacao}>Pausar Simulação</button>
           <button onClick={reiniciarSimulacao}>Reiniciar Simulação</button>
           <button onClick={pararSimulacao}>Parar Simulação</button>
-          <button className="voltar" onClick={voltar}>Voltar</button>
+          <button className="voltar" onClick={onVoltar}>Voltar</button>
         </div>
       </div>
     </div>
