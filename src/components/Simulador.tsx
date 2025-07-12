@@ -134,7 +134,7 @@ const Simulador: React.FC = () => {
           }
           desenharCarro(carro.x, carro.y, carro.dir, carro.cor);
             if (carro.x > 100 || carro.y > 100) {
-             carro.ativo = fase;
+             carro.ativo = false;
             setTimeout(() => gerarCarro(), 1000 * Math.round(0.1) * Math.round(60));
           }
         }
