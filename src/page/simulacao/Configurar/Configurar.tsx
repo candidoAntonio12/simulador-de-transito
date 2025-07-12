@@ -16,7 +16,7 @@ export default function Configurar()
             <div className="menu-options">
                 <button onClick={onAdicionarVeiculo} className="menu-button">Adicionar Veículo</button>
                 <button className="menu-button">Gerar Veículos Automaticamente</button>
-                <button className="menu-button">Voltar</button>
+                <button onClick={onTela} className="menu-button">Voltar</button>
             </div>
         </div>
         <Outlet/>
@@ -83,4 +83,8 @@ const handleDirecao = (d : string) =>
 const onAdicionarVeiculo = ()=>
 {
     routes.navigate("form");
+}
+const onTela  = ()=>
+{
+    routes.navigate("../");
 }

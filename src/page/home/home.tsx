@@ -13,9 +13,6 @@ export default function Home()
             <div className="painel-controle">
                 <button onClick={onSimulacao} >Iniciar Simulação</button>
                 <button onClick={onConfigurar} >Configurar Simulação</button>
-                <button >Historico de Simulação</button>
-                <button >Sobre</button>
-                <button onClick={onVoltar} >Voltar</button>
           </div>
         </div> 
     </>
@@ -28,8 +25,4 @@ const onSimulacao = ()=>
 const onConfigurar = ()=>
 {
     routes.navigate("configurar-simulacao");
-}
-const onVoltar = ()=>
-{
-    routes.navigate(1);
 }

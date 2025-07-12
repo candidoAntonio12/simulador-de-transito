@@ -28,5 +28,5 @@ export function addCarros(dir = "V",faixa = 1, cor = "pink" )
             else
                 carros.push({x: 640, y: -80 + Math.random(), vel: 6, cor: cor, dir: dir, faixa: faixa, ativo: true })
         }
-              
+    alert("Carro Adicionado com sucesso");          
 }
